@@ -1,3 +1,4 @@
+from functools import lru_cache
 import os
 import pathlib
 import sys
@@ -89,10 +90,10 @@ def assemble_code_file(serial_number: int) -> str:
 
     # TODO: Change get_###_place_code() function to accept full serial number and to call get_digit() from within
     # Get code chunk based on each digit
-    ones_code = get_ones_place_code(serial_number)
-    tens_code = get_tens_place_code(serial_number)
-    hundreds_code = get_hundreds_place_code(serial_number)
-    thousands_code = get_thousands_place_code(serial_number)
+    ones_code = get_ones_place_code(get_digit(number=serial_number, n=0))
+    tens_code = get_tens_place_code(get_digit(number=serial_number, n=1))
+    hundreds_code = get_hundreds_place_code(get_digit(number=serial_number, n=2))
+    thousands_code = get_thousands_place_code(get_digit(number=serial_number, n=3))
 
     return (
         header
@@ -125,8 +126,9 @@ def get_footer() -> str:
     return pathlib.Path("./data/footer").read_text()  # Get footer data
 
 
-def get_ones_place_code(serial_number: int) -> str:
-    match get_digit(number=serial_number, n=0):
+@lru_cache
+def get_ones_place_code(digit: int) -> str:
+    match digit:
         case 0:
             with open("./data/1-0") as file:
                 return file.read()
@@ -168,8 +170,9 @@ def get_ones_place_code(serial_number: int) -> str:
                 return file.read()
 
 
-def get_tens_place_code(serial_number: int) -> str:
-    match get_digit(number=serial_number, n=1):
+@lru_cache
+def get_tens_place_code(digit: int) -> str:
+    match digit:
         case 0:
             with open("./data/10-0") as file:
                 return file.read()
@@ -211,8 +214,9 @@ def get_tens_place_code(serial_number: int) -> str:
                 return file.read()
 
 
-def get_hundreds_place_code(serial_number: int) -> str:
-    match get_digit(number=serial_number, n=2):
+@lru_cache
+def get_hundreds_place_code(digit: int) -> str:
+    match digit:
         case 0:
             with open("./data/100-0") as file:
                 return file.read()
@@ -254,8 +258,9 @@ def get_hundreds_place_code(serial_number: int) -> str:
                 return file.read()
 
 
-def get_thousands_place_code(serial_number: int) -> str:
-    match get_digit(number=serial_number, n=3):
+@lru_cache
+def get_thousands_place_code(digit: int) -> str:
+    match digit:
         case 0:
             with open("./data/1000-0") as file:
                 return file.read()
@@ -340,4 +345,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
