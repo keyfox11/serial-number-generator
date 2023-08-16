@@ -1,4 +1,5 @@
 import os
+import pathlib
 import sys
 
 LOWEST_NUMBER = 0
@@ -114,18 +115,14 @@ def get_header(serial_number: int) -> str:
         header_data = file.readlines()
 
     # Modify first line of header to match serial number
-    header_data[0] = f"O{serial_number:04d} ({f'EMTSERIALSUB-{serial_number:04d}'})\n"
+    header_data[0] = f"O{serial_number:04d} (EMTSERIALSUB-{serial_number:04d})\n"
 
     # Collapse header
     return "".join(header_data)
 
 
 def get_footer() -> str:
-    # Get header
-    with open("./data/footer") as file:
-        footer_data = file.read()
-
-    return footer_data
+    return pathlib.Path("./data/footer").read_text()  # Get footer data
 
 
 def get_ones_place_code(serial_number: int) -> str:
