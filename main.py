@@ -1,4 +1,5 @@
 import os
+import sys
 
 LOWEST_NUMBER = 0
 HIGHEST_NUMBER = 9999
@@ -12,7 +13,11 @@ INPUT_START_RANGE_ERROR_MESSAGE = (
 )
 INPUT_END_RANGE_ERROR_MESSAGE = "- BAD INPUT -\n" + "Please enter a number between "
 
-clear = lambda: os.system("cls")
+# Define a cross-platform clear() function for the terminal
+if sys.platform == "win32":
+    clear = lambda: os.system("cls")
+else:
+    clear = lambda: os.system("clear")
 
 
 def opening_statements():  # Clear output and display program information
