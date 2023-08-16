@@ -300,6 +300,30 @@ def get_thousands_place_code(serial_number: int) -> str:
                 return file.read()
 
 
+def write_file(code: str, filename: str):
+    try:
+        with open(f"./NC Files/{filename}.eia", mode="x") as file:
+            file.write(code)
+            print(f"- {filename}.eia created")
+
+    except FileExistsError:
+        print(f"Looks like {filename}.eia already exists.")
+        continue_command = input("Would you like to overwrite it? (y/n): ")
+
+        if continue_command in ["Y", "y"]:
+            os.remove(f"./NC Files/{filename}.eia")
+            with open(f"./NC Files/{filename}.eia", mode="x") as file:
+                file.write(code)
+            print(f"* {filename}.eia was overwritten")
+        else:
+            print(f"* Creation of {filename}.eia was skipped")
+
+    except FileNotFoundError:
+        os.mkdir("./NC Files/")  # Create the directory if it doesn't exist
+
+        write_file(code, filename)  # Try writing again
+
+
 def main():
     opening_statements()  # Clear output and display program information
 
@@ -315,40 +339,7 @@ def main():
 
         code_file = assemble_code_file(number)
 
-        # TODO: Define a write_file() function to get rid of this disgusting duplicate code
-        try:
-            with open(f"./NC Files/{filename}.eia", mode="x") as file:
-                file.write(code_file)
-                print(f"- {filename}.eia created")
-        except FileExistsError:
-            print(f"Looks like {filename}.eia already exists.")
-            continue_command = input("Would you like to overwrite it? (y/n): ")
-
-            if continue_command in ["Y", "y"]:
-                os.remove(f"./NC Files/{filename}.eia")
-                with open(f"./NC Files/{filename}.eia", mode="x") as file:
-                    file.write(code_file)
-                print(f"* {filename}.eia was overwritten")
-            else:
-                print(f"* Creation of {filename}.eia was skipped")
-        except FileNotFoundError:
-            os.mkdir("./NC Files/")  # Create the directory if it doesn't exist
-
-            try:
-                with open(f"./NC Files/{filename}.eia", mode="x") as file:
-                    file.write(code_file)
-                    print(f"- {filename}.eia created")
-            except FileExistsError:
-                print(f"Looks like {filename}.eia already exists.")
-                continue_command = input("Would you like to overwrite it? (y/n): ")
-
-                if continue_command in ["Y", "y"]:
-                    os.remove(f"./NC Files/{filename}.eia")
-                    with open(f"./NC Files/{filename}.eia", mode="x") as file:
-                        file.write(code_file)
-                    print(f"* {filename}.eia was overwritten")
-                else:
-                    print(f"* Creation of {filename}.eia was skipped")
+        write_file(code_file, filename)
 
 
 if __name__ == "__main__":
