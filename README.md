@@ -3,7 +3,7 @@
 > Aug 15 2023
 >
 > This script is used to quickly generate a large number of G-Code files for engraving serial numbers.  
-> The files currently provided in data/ should be used only as an example and for script testing since they are from a project I'm currently working on and will **NOT WORK** in your machine!
+> The files currently provided in data/ should be used only as an example and for script testing since they are derived from a project I'm currently working on and **WILL NOT WORK** in your machine!
 
 ## What does this do?
 
