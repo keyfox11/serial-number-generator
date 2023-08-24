@@ -2,6 +2,11 @@ from functools import lru_cache
 import os
 import pathlib
 import sys
+import time
+
+DEBUG_SHOW_STATS = True
+DEBUG_START_TIME = 0
+DEBUG_END_TIME = 0
 
 LOWEST_NUMBER = 0
 HIGHEST_NUMBER = 99999
@@ -92,8 +97,6 @@ def assemble_code_file(serial_number: int) -> str:
     header = get_header(serial_number=serial_number)
     footer = get_footer()
 
-    # TODO: Change get_###_place_code() function to accept full serial number and to call get_digit() from within
-    # Get code chunk based on each digit
     ones_code = get_ones_place_code(get_digit(number=serial_number, n=0))
     tens_code = get_tens_place_code(get_digit(number=serial_number, n=1))
     hundreds_code = get_hundreds_place_code(get_digit(number=serial_number, n=2))
@@ -385,6 +388,11 @@ def main():
     start_serial_number = get_first_serial()
     end_serial_number = get_last_serial(start_serial_number)
 
+    if DEBUG_SHOW_STATS:
+        global DEBUG_START_TIME
+        global DEBUG_END_TIME
+        DEBUG_START_TIME = time.time()
+
     print("------------------------\n")
 
     numbers = [item for item in range(start_serial_number, end_serial_number + 1)]
@@ -396,6 +404,25 @@ def main():
 
         write_file(code_file, filename)
 
+    DEBUG_END_TIME = time.time()
+
 
 if __name__ == "__main__":
     main()
+
+    if DEBUG_SHOW_STATS:
+        elapsed_seconds = DEBUG_END_TIME - DEBUG_START_TIME
+        elapsed_minutes = int(elapsed_seconds // 60)
+        elapsed_seconds = elapsed_seconds % 60
+
+        print("\n\nDEBUG STATS\n")
+        print(f"Elapsed time: {elapsed_minutes}:{elapsed_seconds:.2f}\n")
+        print("Ones Place: " + "\n\t" + str(get_ones_place_code.cache_info()))
+        print("Tens Place: " + "\n\t" + str(get_tens_place_code.cache_info()))
+        print("Hundreds Place: " + "\n\t" + str(get_hundreds_place_code.cache_info()))
+        print("Thousands Place: " + "\n\t" + str(get_thousands_place_code.cache_info()))
+        print(
+            "Ten-thousands Place: "
+            + "\n\t"
+            + str(get_ten_thousands_place_code.cache_info())
+        )
