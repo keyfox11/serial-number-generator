@@ -14,5 +14,5 @@ This ended up taking a lot of time and was prone to errors so that's where this 
 ## How to use it
 
 Running serial-number-generator.py will prompt you to enter a beginning and ending serial number.  
-The current working range is 0000 to 9999.  
+The current working range is 0 to 99,999.  
 After entering a correct range of numbers, it will grab pieces of code from data/ and stitch together individual files, placing them in NC Programs/
