@@ -48,9 +48,7 @@ def get_first_serial() -> int:
 
     except ValueError:
         opening_statements()
-        print(
-            INPUT_PARSE_ERROR_MESSAGE
-        )  # Give an error message explaining what happened
+        print(INPUT_PARSE_ERROR_MESSAGE)  # Give an error message explaining what happened
         return get_first_serial()
 
     else:
@@ -124,7 +122,7 @@ def assemble_code_file(serial_number: int) -> str:
 
 def get_header(serial_number: int) -> str:
     # Get header
-    with open("./5-digit-data/header") as file:
+    with open("./data/header") as file:
         header_data = file.readlines()
 
     # Modify first line of header to match serial number
@@ -135,50 +133,50 @@ def get_header(serial_number: int) -> str:
 
 
 def get_footer() -> str:
-    return pathlib.Path("./5-digit-data/footer").read_text()  # Get footer data
+    return pathlib.Path("./data/footer").read_text()  # Get footer data
 
 
 @lru_cache
 def get_ones_place_code(digit: int) -> str:
     match digit:
         case 0:
-            with open("./5-digit-data/1-0") as file:
+            with open("./data/1-0") as file:
                 return file.read()
 
         case 1:
-            with open("./5-digit-data/1-1") as file:
+            with open("./data/1-1") as file:
                 return file.read()
 
         case 2:
-            with open("./5-digit-data/1-2") as file:
+            with open("./data/1-2") as file:
                 return file.read()
 
         case 3:
-            with open("./5-digit-data/1-3") as file:
+            with open("./data/1-3") as file:
                 return file.read()
 
         case 4:
-            with open("./5-digit-data/1-4") as file:
+            with open("./data/1-4") as file:
                 return file.read()
 
         case 5:
-            with open("./5-digit-data/1-5") as file:
+            with open("./data/1-5") as file:
                 return file.read()
 
         case 6:
-            with open("./5-digit-data/1-6") as file:
+            with open("./data/1-6") as file:
                 return file.read()
 
         case 7:
-            with open("./5-digit-data/1-7") as file:
+            with open("./data/1-7") as file:
                 return file.read()
 
         case 8:
-            with open("./5-digit-data/1-8") as file:
+            with open("./data/1-8") as file:
                 return file.read()
 
         case 9:
-            with open("./5-digit-data/1-9") as file:
+            with open("./data/1-9") as file:
                 return file.read()
 
 
@@ -186,43 +184,43 @@ def get_ones_place_code(digit: int) -> str:
 def get_tens_place_code(digit: int) -> str:
     match digit:
         case 0:
-            with open("./5-digit-data/10-0") as file:
+            with open("./data/10-0") as file:
                 return file.read()
 
         case 1:
-            with open("./5-digit-data/10-1") as file:
+            with open("./data/10-1") as file:
                 return file.read()
 
         case 2:
-            with open("./5-digit-data/10-2") as file:
+            with open("./data/10-2") as file:
                 return file.read()
 
         case 3:
-            with open("./5-digit-data/10-3") as file:
+            with open("./data/10-3") as file:
                 return file.read()
 
         case 4:
-            with open("./5-digit-data/10-4") as file:
+            with open("./data/10-4") as file:
                 return file.read()
 
         case 5:
-            with open("./5-digit-data/10-5") as file:
+            with open("./data/10-5") as file:
                 return file.read()
 
         case 6:
-            with open("./5-digit-data/10-6") as file:
+            with open("./data/10-6") as file:
                 return file.read()
 
         case 7:
-            with open("./5-digit-data/10-7") as file:
+            with open("./data/10-7") as file:
                 return file.read()
 
         case 8:
-            with open("./5-digit-data/10-8") as file:
+            with open("./data/10-8") as file:
                 return file.read()
 
         case 9:
-            with open("./5-digit-data/10-9") as file:
+            with open("./data/10-9") as file:
                 return file.read()
 
 
@@ -230,43 +228,43 @@ def get_tens_place_code(digit: int) -> str:
 def get_hundreds_place_code(digit: int) -> str:
     match digit:
         case 0:
-            with open("./5-digit-data/100-0") as file:
+            with open("./data/100-0") as file:
                 return file.read()
 
         case 1:
-            with open("./5-digit-data/100-1") as file:
+            with open("./data/100-1") as file:
                 return file.read()
 
         case 2:
-            with open("./5-digit-data/100-2") as file:
+            with open("./data/100-2") as file:
                 return file.read()
 
         case 3:
-            with open("./5-digit-data/100-3") as file:
+            with open("./data/100-3") as file:
                 return file.read()
 
         case 4:
-            with open("./5-digit-data/100-4") as file:
+            with open("./data/100-4") as file:
                 return file.read()
 
         case 5:
-            with open("./5-digit-data/100-5") as file:
+            with open("./data/100-5") as file:
                 return file.read()
 
         case 6:
-            with open("./5-digit-data/100-6") as file:
+            with open("./data/100-6") as file:
                 return file.read()
 
         case 7:
-            with open("./5-digit-data/100-7") as file:
+            with open("./data/100-7") as file:
                 return file.read()
 
         case 8:
-            with open("./5-digit-data/100-8") as file:
+            with open("./data/100-8") as file:
                 return file.read()
 
         case 9:
-            with open("./5-digit-data/100-9") as file:
+            with open("./data/100-9") as file:
                 return file.read()
 
 
@@ -274,43 +272,43 @@ def get_hundreds_place_code(digit: int) -> str:
 def get_thousands_place_code(digit: int) -> str:
     match digit:
         case 0:
-            with open("./5-digit-data/1000-0") as file:
+            with open("./data/1000-0") as file:
                 return file.read()
 
         case 1:
-            with open("./5-digit-data/1000-1") as file:
+            with open("./data/1000-1") as file:
                 return file.read()
 
         case 2:
-            with open("./5-digit-data/1000-2") as file:
+            with open("./data/1000-2") as file:
                 return file.read()
 
         case 3:
-            with open("./5-digit-data/1000-3") as file:
+            with open("./data/1000-3") as file:
                 return file.read()
 
         case 4:
-            with open("./5-digit-data/1000-4") as file:
+            with open("./data/1000-4") as file:
                 return file.read()
 
         case 5:
-            with open("./5-digit-data/1000-5") as file:
+            with open("./data/1000-5") as file:
                 return file.read()
 
         case 6:
-            with open("./5-digit-data/1000-6") as file:
+            with open("./data/1000-6") as file:
                 return file.read()
 
         case 7:
-            with open("./5-digit-data/1000-7") as file:
+            with open("./data/1000-7") as file:
                 return file.read()
 
         case 8:
-            with open("./5-digit-data/1000-8") as file:
+            with open("./data/1000-8") as file:
                 return file.read()
 
         case 9:
-            with open("./5-digit-data/1000-9") as file:
+            with open("./data/1000-9") as file:
                 return file.read()
 
 
@@ -318,43 +316,43 @@ def get_thousands_place_code(digit: int) -> str:
 def get_ten_thousands_place_code(digit: int) -> str:
     match digit:
         case 0:
-            with open("./5-digit-data/10000-0") as file:
+            with open("./data/10000-0") as file:
                 return file.read()
 
         case 1:
-            with open("./5-digit-data/10000-1") as file:
+            with open("./data/10000-1") as file:
                 return file.read()
 
         case 2:
-            with open("./5-digit-data/10000-2") as file:
+            with open("./data/10000-2") as file:
                 return file.read()
 
         case 3:
-            with open("./5-digit-data/10000-3") as file:
+            with open("./data/10000-3") as file:
                 return file.read()
 
         case 4:
-            with open("./5-digit-data/10000-4") as file:
+            with open("./data/10000-4") as file:
                 return file.read()
 
         case 5:
-            with open("./5-digit-data/10000-5") as file:
+            with open("./data/10000-5") as file:
                 return file.read()
 
         case 6:
-            with open("./5-digit-data/10000-6") as file:
+            with open("./data/10000-6") as file:
                 return file.read()
 
         case 7:
-            with open("./5-digit-data/10000-7") as file:
+            with open("./data/10000-7") as file:
                 return file.read()
 
         case 8:
-            with open("./5-digit-data/10000-8") as file:
+            with open("./data/10000-8") as file:
                 return file.read()
 
         case 9:
-            with open("./5-digit-data/10000-9") as file:
+            with open("./data/10000-9") as file:
                 return file.read()
 
 
